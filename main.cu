@@ -48,7 +48,6 @@ int main() {
 
 	for (int i = 0; i < NN; i++) {
 		r[i].speed = speed[i];
-		cout << r[i].speed << endl;
 	}
 
 	int location[NN];
@@ -64,7 +63,6 @@ int main() {
 	for (sec; sec < NN; sec++) {
 		race << <1, NN >> > (de_speed, de_location, de);
 		cudaMemcpy(d, de, 1 * sizeof(int), cudaMemcpyDeviceToHost);
-		printf("dongu sayisi: %d \n", sec+1);
 		if (d[0] > 0) {
 			break;
 		}
@@ -93,10 +91,6 @@ int main() {
 		r[i].rank = location[i];
 		r[i].p_rank();
 	}
-
-	/*free(location);
-	free(speed);
-	free(d);*/
 
 	cudaFree(de_location);
 	cudaFree(de_speed);
